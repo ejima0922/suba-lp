@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Meta-RC Genesis Project - 下馬</title>
     <style>
-        * {
+        html, body, div, h1, p, ul, li, label, button, span, input {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -71,12 +71,13 @@
         .metric-value {
             font-size: 28px;
             font-weight: bold;
-            color: #ffffff;
+            color: #00ca98;
             margin: 8px 0;
         }
         .metric-sub {
-            font-size: 14px;
-            color: #00ca98;
+            font-size: 12px;
+            color: #8a94a0;
+            margin-top: 4px;
         }
         ul {
             padding-left: 20px;
@@ -85,6 +86,15 @@
             font-size: 14px;
             margin-bottom: 8px;
             color: #d1d8e0;
+        }
+        .breakdown {
+            background: #1a1c1e;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #a0aab5;
+            border: 1px dashed #383c42;
         }
         .agreement-box {
             background: #1a1c1e;
@@ -134,8 +144,6 @@
         }
         .checkbox-container input:checked ~ .checkmark:after {
             display: block;
-        }
-        .checkbox-container .checkmark:after {
             left: 7px;
             top: 3px;
             width: 6px;
@@ -183,23 +191,29 @@
         </div>
 
         <div class="section">
-            <div class="section-title">■ 初期投資シミュレーション</div>
-            利用可能な融資プランに基づき、最大限に分割した月々のご返済額を算出いたしました。
+            <div class="section-title">■ オーナー様 月々純利益シミュレーション</div>
+            Meta-RCが直接ローン返済と管理を代行。すべての経費を差し引いた「完全な純利益」のみをお届けします。
             <div class="metric-box">
-                <div class="metric-label">35年ローン 最大分割・月々お支払額</div>
-                <div class="metric-value">月々 689,455 円</div>
-                <div class="metric-sub">総事業費：2億1,500万円（融資審査対象金額）</div>
+                <div class="metric-label">35年ローンおよび全経費控除後 月々お振込額</div>
+                <div class="metric-value">月々 240,545 円（純利益）</div>
+                <div class="metric-sub">※総収入から清掃費20％・修繕積立10％・管理料10％・税金10％（計50％）を控除し、残り50％から35年ローン返済を完全控除済</div>
+            </div>
+            <div class="breakdown">
+                【収益最大化積算の裏付け】<br>
+                １．地下室（1部屋10㎡前後）：稼働率70％で保守的に積算。下馬エリア相場の20％増（50分枠・3,000円）の高回転運用。<br>
+                ２．地上階（1Fから4F）：高付加価値により、周辺賃貸相場の2割増しで設定。<br>
+                ３．飲食デリバリー収益：仕入れの20％上乗せで請求。利益の10％はMeta-RC、残り10％は修繕積立金へ自動充当。
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">■ 建物仕様・収益最大化積算</div>
+            <div class="section-title">■ 建物仕様・設備詳細</div>
             <ul>
-                <li>高度地区10m制限下をフル活用する「B1 + 4F」の革新RC構造</li>
-                <li>全室20㎡以下に最適化された、高利回り・高密度設計</li>
-                <li>地下空間：24時間演奏可能・一面LEDウォール完備の完全防音ミュージックラボ</li>
-                <li>地下付帯設備：コインロッカーおよび自動販売機設置による自動収益源の確保</li>
-                <li>セキュリティ：接道側外壁オール鏡張りおよび高精度オートロック仕様</li>
+                <li>高度地区10m制限下をフル活用する「B1 + 4F」の革新RC構造（ZEH+HEMS標準装備）</li>
+                <li>地上階：全室20㎡以下に最適化された、高利回り・高密度設計</li>
+                <li>地下空間：1部屋10㎡前後。奥半分の床・壁・天井にLEDスクリーンを完備した完全防音ミュージックラボ</li>
+                <li>地下各室設備：配信用スマホスタンド、マイクスタンド、配信用テーブル、2人用ソファ、終了10分前アナウンス用四つ角埋め込みスピーカー</li>
+                <li>付帯設備：接道側オール鏡張り外壁、高精度オートロック、コインロッカー、自動販売機</li>
             </ul>
         </div>
 
