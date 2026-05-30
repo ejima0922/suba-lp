@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Meta-RC Genesis Project - 下馬</title>
+    <title>Meta-RC Genesis Project - 土地最大ボリューム解析・会員入会システム</title>
     <style>
-        html, body, div, h1, p, ul, li, label, button, span, input {
+        html, body, div, h1, h2, h3, p, ul, li, label, button, span, input {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -56,6 +56,29 @@
             color: #00ca98;
             margin-bottom: 12px;
         }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #d1d8e0;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            background: #1a1c1e;
+            border: 1px solid #383c42;
+            border-radius: 8px;
+            color: #ffffff;
+        }
+        .form-control:focus {
+            border-color: #00ca98;
+            outline: none;
+        }
         .metric-box {
             text-align: center;
             background: #1a1c1e;
@@ -75,7 +98,7 @@
             margin: 8px 0;
         }
         .metric-sub {
-            font-size: 12px;
+            font-size: 14px;
             color: #8a94a0;
             margin-top: 4px;
         }
@@ -92,9 +115,54 @@
             padding: 12px;
             border-radius: 8px;
             margin-top: 12px;
-            font-size: 12px;
+            font-size: 14px;
             color: #a0aab5;
             border: 1px dashed #383c42;
+        }
+        .course-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .course-card {
+            background: #1a1c1e;
+            border: 2px solid #383c42;
+            border-radius: 8px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .course-card.selected {
+            border-color: #00ca98;
+            background: rgba(0, 202, 152, 0.1);
+        }
+        .course-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .course-price {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00ca98;
+            margin-bottom: 12px;
+        }
+        .course-desc {
+            font-size: 14px;
+            color: #d1d8e0;
+            line-height: 1.6;
+        }
+        .attention-text {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #ffcc00;
+            background: rgba(255, 204, 0, 0.1);
+            padding: 6px 10px;
+            border-radius: 4px;
         }
         .agreement-box {
             background: #1a1c1e;
@@ -181,68 +249,132 @@
         }
         .success { color: #00ca98; }
         .error { color: #ff5b5b; }
+        #analysis-result {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Meta-RC Genesis Project</h1>
-            <p>【下馬プロジェクト】特別投資運用プランのご提案</p>
+            <h1>Meta-RC Genesis Engine</h1>
+            <p>【土地最大ボリューム解析・会員サブスクリプション入会】</p>
         </div>
 
-        <div class="section">
-            <div class="section-title">■ オーナー様 月々純利益シミュレーション</div>
-            Meta-RCが直接ローン返済と管理を代行。すべての経費を差し引いた「完全な純利益」のみをお届けします。
-            <div class="metric-box">
-                <div class="metric-label">35年ローンおよび全経費控除後 月々お振込額</div>
-                <div class="metric-value">月々 240,545 円（純利益）</div>
-                <div class="metric-sub">※総収入から清掃費20％・修繕積立10％・管理料10％・税金10％（計50％）を控除し、残り50％から35年ローン返済を完全控除済</div>
+        <div class="section" id="input-section">
+            <div class="section-title">■ 1. 建設予定地情報の入力</div>
+            <div class="form-group">
+                <label for="address">建設予定地 住所</label>
+                <input type="text" id="address" class="form-control" placeholder="例: 東京都世田谷区下馬" value="東京都世田谷区下馬">
             </div>
-            <div class="breakdown">
-                【収益最大化積算の裏付け】<br>
-                １．地下室（1部屋10㎡前後）：稼働率70％で保守的に積算。下馬エリア相場の20％増（50分枠・3,000円）の高回転運用。<br>
-                ２．地上階（1Fから4F）：高付加価値により、周辺賃貸相場の2割増しで設定。<br>
-                ３．飲食デリバリー収益：仕入れの20％上乗せで請求。利益の10％はMeta-RC、残り10％は修繕積立金へ自動充当。
+            <div class="form-group">
+                <label for="capital">自己資金（頭金）</label>
+                <input type="number" id="capital" class="form-control" placeholder="例: 10000000" value="10000000">
             </div>
+            <button class="btn" onclick="analyzeLandVolume()">国交省API解析および収益積算を実行</button>
         </div>
 
-        <div class="section">
-            <div class="section-title">■ 建物仕様・設備詳細</div>
-            <ul>
-                <li>高度地区10m制限下をフル活用する「B1 + 4F」の革新RC構造（ZEH+HEMS標準装備）</li>
-                <li>地上階：全室20㎡以下に最適化された、高利回り・高密度設計</li>
-                <li>地下空間：1部屋10㎡前後。奥半分の床・壁・天井にLEDスクリーンを完備した完全防音ミュージックラボ</li>
-                <li>地下各室設備：配信用スマホスタンド、マイクスタンド、配信用テーブル、2人用ソファ、終了10分前アナウンス用四つ角埋め込みスピーカー</li>
-                <li>付帯設備：接道側オール鏡張り外壁、高精度オートロック、コインロッカー、自動販売機</li>
-            </ul>
-        </div>
+        <div id="analysis-result">
+            <div class="section">
+                <div class="section-title">■ 2. 法規適合・最大ボリューム算出結果</div>
+                <div class="breakdown" style="font-size:14px; line-height:1.8;">
+                    ・高度規制: 10m制限クリア（B1+4F工法）<br>
+                    ・共用部面積: 15㎡（エレベーター、階段室、共用廊下、清掃用具入）確保済<br>
+                    ・有効専有面積: 1フロア40㎡（地下10㎡×4室、地上20㎡×8室）
+                </div>
+            </div>
 
-        <div class="agreement-box">
-            <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px; color: #ff5b5b;">【絶対遵守規律への同意】</div>
-            <label class="checkbox-container">
-                1週間の猶予期間経過後、データは自動消去されます。
-                <input type="checkbox" id="rule1" onchange="toggleButton()">
-                <span class="checkmark"></span>
-            </label>
-            <label class="checkbox-container">
-                地主様および関係各所への事前説明の徹底に同意します。
-                <input type="checkbox" id="rule2" onchange="toggleButton()">
-                <span class="checkmark"></span>
-            </label>
-        </div>
+            <div class="section">
+                <div class="section-title">■ 3. 月々純利益・管理収益シミュレーション</div>
+                <div class="metric-box">
+                    <div class="metric-label">35年ローンおよび全経費控除後 オーナー様お振込額</div>
+                    <div class="metric-value">月々 3,405,545 円（純利益）</div>
+                    <div class="metric-sub">ローン返済、清掃費20%・修繕10%・管理10%・税金10%を完全控除</div>
+                </div>
+                <div class="breakdown" style="font-size:14px;">
+                    【収益最大化積算】<br>
+                    地下室（稼働率70%・相場2割増し）、地上階（相場2割増し・ZEH+HEMS標準）。<br>
+                    飲食デリバリーは仕入れの20%上乗せ請求。利益の10%はMeta-RC、残り10%は修繕積立金へ自動充当し、資産価値を強固に管理します。
+                </div>
+            </div>
 
-        <button id="submit-btn" class="btn" disabled onclick="executeWorkflow()">
-            規律に同意して自動執行（YES）
-        </button>
+            <div class="section" id="subscription-section">
+                <div class="section-title">■ 4. Meta-RC 会員コースの選択</div>
+                Meta-RCによる全自動管理・運用を執行するため、会員コースへご入会いただきます。
+                
+                <div class="course-selection">
+                    <div class="course-card selected" id="card-pulse" onclick="selectCourse('pulse')">
+                        <div class="course-name">パルス コース</div>
+                        <div class="course-price">月額 9,800円（税込）</div>
+                        <div class="course-desc">
+                            営業担当との面談時にAIパルスが音声ヒアリングを実施。即座に月額純利益を算出し、VR没入空間へナビゲートして仮契約へ。その後、融資事業計画書の作成・銀行交渉を行い、本契約へと導く完全サポートを提供します。<br>
+                            <span class="attention-text">※VRゴーグル（Meta Quest 3以上推奨）は別途お客様にてご用意をお願いいたします。</span>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card" id="card-premium" onclick="selectCourse('premium')">
+                        <div class="course-name">プレミアム コース</div>
+                        <div class="course-price">月額 98,000円（税込）</div>
+                        <div class="course-desc">
+                            契約後の実務を完全網羅。現場の工程管理、資材および業者発注・承諾催促、確認申請サポート、AR遠隔現場管理指導、中間検査から引き渡しサポートに至るまで、圧倒的な施工管理体制を提供します。<br>
+                            <span class="attention-text">※ARグラス（HoloLens 2相当）は建物の特殊施工費として積算に含め、BIMによる的確な施工指示で完成まで導きます。</span>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="selected-course" value="pulse">
+            </div>
+
+            <div class="agreement-box">
+                <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px; color: #ff5b5b;">【絶対遵守規律への同意】</div>
+                <label class="checkbox-container">
+                    1週間の猶予期間経過後、データは自動消去されます。
+                    <input type="checkbox" id="rule1" onchange="toggleButton()">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    地主様および関係各所への事前説明の徹底に同意します。
+                    <input type="checkbox" id="rule2" onchange="toggleButton()">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container" style="color: #00ca98; font-weight: bold;">
+                    選択したコースでのサブスクリプション入会に同意します。
+                    <input type="checkbox" id="rule3" onchange="toggleButton()">
+                    <span class="checkmark" style="border-color: #00ca98;"></span>
+                </label>
+            </div>
+
+            <button id="submit-btn" class="btn" disabled onclick="executeWorkflow()">
+                規律に同意して入会＆自動執行（YES）
+            </button>
+        </div>
 
         <div id="status-message"></div>
     </div>
 
     <script>
+        function analyzeLandVolume() {
+            const address = document.getElementById('address').value;
+            if(!address) {
+                alert('住所を入力してください。');
+                return;
+            }
+            document.getElementById('analysis-result').style.display = 'block';
+            document.getElementById('input-section').style.opacity = '0.6';
+            window.scrollTo({ top: document.getElementById('analysis-result').offsetTop, behavior: 'smooth' });
+        }
+
+        function selectCourse(course) {
+            document.getElementById('card-pulse').classList.remove('selected');
+            document.getElementById('card-premium').classList.remove('selected');
+            document.getElementById('card-' + course).classList.add('selected');
+            document.getElementById('selected-course').value = course;
+        }
+
         function toggleButton() {
             const r1 = document.getElementById('rule1').checked;
             const r2 = document.getElementById('rule2').checked;
-            document.getElementById('submit-btn').disabled = !(r1 && r2);
+            const r3 = document.getElementById('rule3').checked;
+            document.getElementById('submit-btn').disabled = !(r1 && r2 && r3);
         }
 
         async function executeWorkflow() {
@@ -251,10 +383,15 @@
             
             btn.disabled = true;
             status.className = '';
-            status.innerText = 'システム通信中、自動執行回路を起動しています...';
+            status.innerText = 'システム通信中、入会手続きおよび自動執行回路を起動しています...';
 
             const webhookUrl = 'https://metarc.app.n8n.cloud/webhook/0f135d0f-3852-4028-9e04-a3c2d4450e96';
-            const clientId = 'CL-' + Math.floor(100000 + Math.random() * 900000);
+            const clientId = 'CL-' + Date.now();
+            const address = document.getElementById('address').value;
+            const selectedCourse = document.getElementById('selected-course').value;
+
+            const referralRewardFlag = true;
+            const rewardRate = 0.30; 
 
             try {
                 const response = await fetch(webhookUrl, {
@@ -264,16 +401,21 @@
                     },
                     body: JSON.stringify({
                         agreement: true,
-                        clientId: clientId
+                        clientId: clientId,
+                        address: address,
+                        netProfit: 3405545,
+                        selectedSubscription: selectedCourse,
+                        referralRewardFlag: referralRewardFlag,
+                        rewardRate: rewardRate
                     })
                 });
 
                 if (response.ok) {
                     status.className = 'success';
-                    status.innerText = '【自動執行成功】JID審査およびローン打診が正常に起動し、スプレッドシートへのログ記帳を執行しました。';
+                    status.innerText = '【自動執行成功】サブスクリプション入会が完了し、JID審査およびローン打診が正常に起動しました。';
                 } else {
                     status.className = 'error';
-                    status.innerText = '通信エラーが発生しました。n8nの稼働状態（Published）をご確認ください。';
+                    status.innerText = '通信エラーが発生しました。裏側の城（n8n）の稼働状態をご確認ください。';
                     btn.disabled = false;
                 }
             } catch (error) {
