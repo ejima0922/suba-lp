@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meta-RC Genesis Project - 下馬</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #1a1c1e;
+            color: #f0f2f5;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #25282c;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid #383c42;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            border-bottom: 2px solid #00ca98;
+            padding-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .header p {
+            font-size: 14px;
+            color: #8a94a0;
+            margin-top: 8px;
+        }
+        .section {
+            margin-bottom: 28px;
+            background: #2d3137;
+            padding: 18px;
+            border-radius: 12px;
+            border-left: 4px solid #00ca98;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #00ca98;
+            margin-bottom: 12px;
+        }
+        .metric-box {
+            text-align: center;
+            background: #1a1c1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #383c42;
+        }
+        .metric-label {
+            font-size: 14px;
+            color: #8a94a0;
+        }
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 8px 0;
+        }
+        .metric-sub {
+            font-size: 14px;
+            color: #00ca98;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #d1d8e0;
+        }
+        .agreement-box {
+            background: #1a1c1e;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border: 1px solid #ff5b5b;
+        }
+        .checkbox-container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #f0f2f5;
+            user-select: none;
+        }
+        .checkbox-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 22px;
+            width: 22px;
+            background-color: #383c42;
+            border-radius: 4px;
+            border: 1px solid #555;
+        }
+        .checkbox-container:hover input ~ .checkmark {
+            background-color: #4e545c;
+        }
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #00ca98;
+            border-color: #00ca98;
+        }
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .checkbox-container input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .checkbox-container .checkmark:after {
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #00ca98 0%, #00a37b 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,202,152,0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn:disabled {
+            background: #4e545c;
+            box-shadow: none;
+            cursor: not-allowed;
+            color: #8a94a0;
+        }
+        #status-message {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .success { color: #00ca98; }
+        .error { color: #ff5b5b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Meta-RC Genesis Project</h1>
+            <p>【下馬プロジェクト】特別投資運用プランのご提案</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">■ 初期投資シミュレーション</div>
+            利用可能な融資プランに基づき、最大限に分割した月々のご返済額を算出いたしました。
+            <div class="metric-box">
+                <div class="metric-label">35年ローン 最大分割・月々お支払額</div>
+                <div class="metric-value">月々 689,455 円</div>
+                <div class="metric-sub">総事業費：2億1,500万円（融資審査対象金額）</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">■ 建物仕様・収益最大化積算</div>
+            <ul>
+                <li>高度地区10m制限下をフル活用する「B1 + 4F」の革新RC構造</li>
+                <li>全室20㎡以下に最適化された、高利回り・高密度設計</li>
+                <li>地下空間：24時間演奏可能・一面LEDウォール完備の完全防音ミュージックラボ</li>
+                <li>地下付帯設備：コインロッカーおよび自動販売機設置による自動収益源の確保</li>
+                <li>セキュリティ：接道側外壁オール鏡張りおよび高精度オートロック仕様</li>
+            </ul>
+        </div>
+
+        <div class="agreement-box">
+            <div style="font-size: 14px; font-weight: bold; margin-bottom: 12px; color: #ff5b5b;">【絶対遵守規律への同意】</div>
+            <label class="checkbox-container">
+                1週間の猶予期間経過後、データは自動消去されます。
+                <input type="checkbox" id="rule1" onchange="toggleButton()">
+                <span class="checkmark"></span>
+            </label>
+            <label class="checkbox-container">
+                地主様および関係各所への事前説明の徹底に同意します。
+                <input type="checkbox" id="rule2" onchange="toggleButton()">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+
+        <button id="submit-btn" class="btn" disabled onclick="executeWorkflow()">
+            規律に同意して自動執行（YES）
+        </button>
+
+        <div id="status-message"></div>
+    </div>
+
+    <script>
+        function toggleButton() {
+            const r1 = document.getElementById('rule1').checked;
+            const r2 = document.getElementById('rule2').checked;
+            document.getElementById('submit-btn').disabled = !(r1 && r2);
+        }
+
+        async function executeWorkflow() {
+            const btn = document.getElementById('submit-btn');
+            const status = document.getElementById('status-message');
+            
+            btn.disabled = true;
+            status.className = '';
+            status.innerText = 'システム通信中、自動執行回路を起動しています...';
+
+            const webhookUrl = 'https://metarc.app.n8n.cloud/webhook/0f135d0f-3852-4028-9e04-a3c2d4450e96';
+            const clientId = 'CL-' + Math.floor(100000 + Math.random() * 900000);
+
+            try {
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        agreement: true,
+                        clientId: clientId
+                    })
+                });
+
+                if (response.ok) {
+                    status.className = 'success';
+                    status.innerText = '【自動執行成功】JID審査およびローン打診が正常に起動し、スプレッドシートへのログ記帳を執行しました。';
+                } else {
+                    status.className = 'error';
+                    status.innerText = '通信エラーが発生しました。n8nの稼働状態（Published）をご確認ください。';
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                status.className = 'error';
+                status.innerText = 'ネットワーク接続エラーが発生しました。裏側の回路との接続を確認してください。';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
